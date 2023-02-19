@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.GameInfoPanel = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.BoardColCombo = new System.Windows.Forms.ComboBox();
             this.SaveBtn = new System.Windows.Forms.Button();
             this.Mines = new System.Windows.Forms.Label();
             this.MinesCombo = new System.Windows.Forms.ComboBox();
             this.BoardSize = new System.Windows.Forms.Label();
             this.BoardRowCombo = new System.Windows.Forms.ComboBox();
-            this.BoardColCombo = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.GameInfoPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -53,6 +53,23 @@
             this.GameInfoPanel.Name = "GameInfoPanel";
             this.GameInfoPanel.Size = new System.Drawing.Size(235, 154);
             this.GameInfoPanel.TabIndex = 0;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(149, 25);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(14, 15);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "X";
+            // 
+            // BoardColCombo
+            // 
+            this.BoardColCombo.FormattingEnabled = true;
+            this.BoardColCombo.Location = new System.Drawing.Point(169, 17);
+            this.BoardColCombo.Name = "BoardColCombo";
+            this.BoardColCombo.Size = new System.Drawing.Size(48, 23);
+            this.BoardColCombo.TabIndex = 5;
             // 
             // SaveBtn
             // 
@@ -99,23 +116,6 @@
             this.BoardRowCombo.Name = "BoardRowCombo";
             this.BoardRowCombo.Size = new System.Drawing.Size(45, 23);
             this.BoardRowCombo.TabIndex = 0;
-            // 
-            // BoardColCombo
-            // 
-            this.BoardColCombo.FormattingEnabled = true;
-            this.BoardColCombo.Location = new System.Drawing.Point(169, 17);
-            this.BoardColCombo.Name = "BoardColCombo";
-            this.BoardColCombo.Size = new System.Drawing.Size(48, 23);
-            this.BoardColCombo.TabIndex = 5;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(149, 25);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(14, 15);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "X";
             // 
             // GameInfo
             // 

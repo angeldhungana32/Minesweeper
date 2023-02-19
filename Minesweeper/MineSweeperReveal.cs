@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Minesweeper
+﻿namespace Minesweeper
 {
     internal class MineSweeperReveal
     {
@@ -19,22 +13,36 @@ namespace Minesweeper
             new int[]{1, -1},
             new int[]{-1, 1}
         };
-        public static void UpdateButtons(List<MineSweeperButton> buttons, int row, int col, MineSweeperBoxLocation current)
+
+        public static void UpdateButtons(List<MineSweeperButton> buttons, 
+            int row, 
+            int col, 
+            MineSweeperBoxLocation current)
         {
-            bool[,] visited = new bool[row,col];
+            bool[,] visited = new bool[row, col];
  
             UpdateBoard(buttons, current.X, current.Y, visited, row, col);
         }
 
-        private static void UpdateBoard(List<MineSweeperButton> buttons, int i, int j, bool[,] visited, int row, int col)
+        private static void UpdateBoard(List<MineSweeperButton> buttons, 
+            int i, 
+            int j, 
+            bool[,] visited, 
+            int row, 
+            int col)
         {
             if (IsOutOfBounds(i, j, row, col) || visited[i, j])
             {
                 return;
             }
+
             visited[i, j] = true;
 
-            MineSweeperButton? button = buttons.Find(x => x.BoxLocation.Equals(new MineSweeperBoxLocation(i, j)));
+            MineSweeperButton? button = buttons
+                .Find(x => 
+                    x.BoxLocation
+                    .Equals(new MineSweeperBoxLocation(i, j)));
+
             if(button == null)
             {
                 return ;
@@ -59,20 +67,36 @@ namespace Minesweeper
             for (int k = 0; k < neighbors.GetLength(0); k++)
             {
                 int[] neightbor = neighbors[k];
-                UpdateBoard(buttons, i + neightbor[0], j + neightbor[1], visited, row, col);
+
+                UpdateBoard(buttons, 
+                    i + neightbor[0], 
+                    j + neightbor[1], 
+                    visited, 
+                    row, 
+                    col);
             }
         }
 
-        private static int GetNumberOfAdjacentMineNeighbors(List<MineSweeperButton> buttons, int i, int j, int row, int col)
+        private static int GetNumberOfAdjacentMineNeighbors(List<MineSweeperButton> buttons, 
+            int i, 
+            int j, 
+            int row, 
+            int col)
         {
             int numberOfAdjacentMines = 0;
+
             foreach (int[] neighbor in neighbors)
             {
                 int neighborI = i + neighbor[0];
                 int neighborJ = j + neighbor[1];
+
                 if (!IsOutOfBounds(neighborI, neighborJ, row, col))
                 {
-                    MineSweeperButton? button = buttons.Find(x => x.BoxLocation.Equals(new MineSweeperBoxLocation(neighborI, neighborJ)));
+                    MineSweeperButton? button = buttons
+                        .Find(x => 
+                            x.BoxLocation
+                            .Equals(new MineSweeperBoxLocation(neighborI, neighborJ)));
+
                     if (button != null && button.IsMine)
                     {
                         numberOfAdjacentMines++;
@@ -104,6 +128,7 @@ namespace Minesweeper
             foreach (MineSweeperBoxLocation mineSweeperBoxLocation in mineLocations)
             {
                 MineSweeperButton? button = buttons.Find(x => x.BoxLocation.Equals(mineSweeperBoxLocation));
+
                 if (!mineSweeperBoxLocation.Equals(current))
                 {
                     OnClickChange(button, Constants.GetResource(Constants.MINE));

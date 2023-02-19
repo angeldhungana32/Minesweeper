@@ -11,6 +11,7 @@ namespace Minesweeper
             buttonList = new List<MineSweeperButton>();
             gameSettings = new GameSettings();
             mineLocations = new List<MineSweeperBoxLocation>();
+
             InitializeComponent();
             gameInfo.ShowDialog();
             OnLoad();
@@ -18,8 +19,9 @@ namespace Minesweeper
 
         private void OnLoad()
         {
-            SetResetButton(Constants.HAPPY);
             gameSettings = gameInfo.GameSettings;
+
+            SetResetButton(Constants.HAPPY);
 
             this.minesweeperPanel.Enabled = true;
             this.minesweeperPanel.Controls.Clear();
@@ -28,6 +30,7 @@ namespace Minesweeper
             mineLocations = GenerateRandomMineLocations(gameSettings.Mines, 
                 gameSettings.BoardRow, 
                 gameSettings.BoardCol);
+
             InitializeBoard(gameSettings.BoardRow, 
                 gameSettings.BoardCol, 
                 mineLocations);
@@ -36,16 +39,19 @@ namespace Minesweeper
         private void InitializeBoard(int row, int column, List<MineSweeperBoxLocation> mines)
         {
             buttonList = new List<MineSweeperButton>();
+
             for (int x = 0; x < row; x++)
             {
                 for (int y = 0; y < column; y++)
                 {
                     MineSweeperBoxLocation location = new(x, y);
+
                     MineSweeperButton button = new(location,
                         mines.Contains(location), 
                         Color.White, 
                         Color.Black, 
                         Color.White);
+
                     button.MouseUp += (s, args) =>
                     {
                         if (args.Button == MouseButtons.Right)
@@ -57,6 +63,7 @@ namespace Minesweeper
                             OnMineSweeperButtonClicked(s,args);
                         }
                     };
+
                     minesweeperPanel.Controls.Add(button);
                     buttonList.Add(button);
                 }
@@ -66,14 +73,18 @@ namespace Minesweeper
         private void OnMineSweeperRightButtonClicked(object s, MouseEventArgs args)
         {
             MineSweeperButton mineSweeperButton = (MineSweeperButton)s;
+
             MineSweeperReveal.OnRightClickChange(mineSweeperButton, 
                 Constants.GetResource(Constants.FLAG));
         }
 
-        private static List<MineSweeperBoxLocation> GenerateRandomMineLocations(int numberOfMines, int rows, int cols)
+        private static List<MineSweeperBoxLocation> GenerateRandomMineLocations(int numberOfMines, 
+            int rows, 
+            int cols)
         {
             List<MineSweeperBoxLocation> locations = new();
             Random rng  = new();
+
             for(int i = 0; i < rows; i++)
             {
                 for(int j = 0; j < cols; j++)
@@ -81,8 +92,14 @@ namespace Minesweeper
                     locations.Add(new MineSweeperBoxLocation(i, j));
                 }
             }
-            List<MineSweeperBoxLocation> shuffledLocations = locations.OrderBy(a => rng.Next()).ToList();
-            return shuffledLocations.Take(numberOfMines).ToList();
+
+            List<MineSweeperBoxLocation> shuffledLocations = locations
+                .OrderBy(a => rng.Next())
+                .ToList();
+
+            return shuffledLocations
+                .Take(numberOfMines)
+                .ToList();
         }
 
         private void OnMineSweeperButtonClicked(object sender, EventArgs args)
@@ -90,17 +107,26 @@ namespace Minesweeper
             MineSweeperButton mineSweeperButton = (MineSweeperButton)sender;
             if (mineSweeperButton.IsMine)
             {
-                MineSweeperReveal.RevealAllMines(mineLocations, buttonList, mineSweeperButton.BoxLocation);
+                MineSweeperReveal.RevealAllMines(mineLocations, 
+                    buttonList, 
+                    mineSweeperButton.BoxLocation);
+
                 SetResetButton(Constants.SAD);
             }
             else
             {
-                MineSweeperReveal.UpdateButtons(buttonList, gameSettings.BoardRow, gameSettings.BoardCol, mineSweeperButton.BoxLocation);
+                MineSweeperReveal.UpdateButtons(buttonList, 
+                    gameSettings.BoardRow, 
+                    gameSettings.BoardCol, 
+                    mineSweeperButton.BoxLocation);
             }
 
             if(MineSweeperReveal.DidGameEnd(buttonList, gameSettings.Mines))
             {
-                MessageBox.Show("You won!", "WOOOOOOOO",MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("You won!", 
+                    "WOOOOOOOO",
+                    MessageBoxButtons.OK, 
+                    MessageBoxIcon.Information);
             }
         }
 

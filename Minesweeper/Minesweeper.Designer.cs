@@ -34,8 +34,6 @@
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.New_Game = new System.Windows.Forms.ToolStripTextBox();
             this.Exit_Game = new System.Windows.Forms.ToolStripTextBox();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.Help = new System.Windows.Forms.ToolStripTextBox();
             this.minesweeperPanel = new System.Windows.Forms.Panel();
             this.GamePanel = new System.Windows.Forms.Panel();
             this.NumOfMines = new System.Windows.Forms.Label();
@@ -49,8 +47,7 @@
             // 
             this.menuStrip.BackColor = System.Drawing.Color.Black;
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem1,
-            this.toolStripMenuItem2});
+            this.toolStripMenuItem1});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
             this.menuStrip.Size = new System.Drawing.Size(684, 24);
@@ -81,23 +78,6 @@
             this.Exit_Game.Size = new System.Drawing.Size(100, 23);
             this.Exit_Game.Text = "Exit";
             this.Exit_Game.Click += new System.EventHandler(this.Exit_Game_Click);
-            // 
-            // toolStripMenuItem2
-            // 
-            this.toolStripMenuItem2.BackColor = System.Drawing.Color.Transparent;
-            this.toolStripMenuItem2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.Help});
-            this.toolStripMenuItem2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(50, 20);
-            this.toolStripMenuItem2.Text = "Game";
-            // 
-            // Help
-            // 
-            this.Help.Name = "Help";
-            this.Help.Size = new System.Drawing.Size(100, 23);
-            this.Help.Text = "Help";
-            this.Help.ToolTipText = "Help";
             // 
             // minesweeperPanel
             // 
@@ -174,8 +154,6 @@
         private ToolStripMenuItem toolStripMenuItem1;
         private ToolStripTextBox New_Game;
         private ToolStripTextBox Exit_Game;
-        private ToolStripMenuItem toolStripMenuItem2;
-        private ToolStripTextBox Help;
         private Panel minesweeperPanel;
         private Panel GamePanel;
         private System.Windows.Forms.Timer timer1;
